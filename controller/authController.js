@@ -1,6 +1,8 @@
 import asyncHandler from "express-async-handler"
 import User from "../models/userModel.js";
 import { comparePassword, hashPassword } from "../helper/authHelper.js";
+import { protect } from "../middleware/authMiddleware.js";
+import { errorHandler } from "../middleware/errorMiddleware.js";
 import JWT from 'jsonwebtoken'
 
 
@@ -100,3 +102,14 @@ export const loginUser = asyncHandler(async (req, res) => {
         throw new Error("Error in user login");
     }
 })
+
+//@desc test
+//@route GET /TEST
+export const testController = (req, res) => {
+    try {
+        res.send('protected route')
+    } catch (error) {
+        console.log(error)
+        res.send({ error })
+    }
+}
