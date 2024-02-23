@@ -1,11 +1,21 @@
 import express from 'express';
 import dotenv from 'dotenv'
+import morgan from 'morgan';
+import connectDB from './config/db.js';
+
 
 //config dotenv
 dotenv.config()
 
+//config database
+connectDB()
+
 //app instance
 const app = express();
+
+//middleware
+app.use(express.json())
+app.use(morgan('dev'))
 
 
 // Define a route handler for the root URL
