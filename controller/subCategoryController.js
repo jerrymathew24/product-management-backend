@@ -1,37 +1,43 @@
 import SubCategory from '../models/subCategoryModel.js'
 import slugify from 'slugify'
 
-export const createCategoryController = async (req, res) => {
+export const createSubCategoryController = async (req, res) => {
     try {
-        const { name } = req.body
+        const { category, name } = req.body
+        if (!category) {
+            res.status(401).send({
+                message: "category is required"
+            })
+        }
         if (!name) {
             res.status(401).send({
                 message: "Name is required"
             })
         }
+
         const existingCategory = await SubCategory.findOne({ name })
         if (existingCategory) {
             res.status(200).send({
-                message: 'Category already exists'
+                message: 'Sub Category already exists'
             })
         }
-        const category = await new SubCategory({ name, slug: slugify(name) }).save()
+        const subCategory = await new SubCategory({ name, slug: slugify(name) }).save()
         res.status(201).send({
             success: true,
-            message: "new Category created",
-            category
+            message: "new Sub Category created",
+            subCategory
         })
     } catch (error) {
         console.log(error)
         res.status(500).send({
             success: false,
-            message: "Error in category",
+            message: "Error in sub category",
             error
         })
     }
 }
 
-export const UpdateCategoryController = async (req, res) => {
+export const UpdateSubCategoryController = async (req, res) => {
     try {
         const { name } = req.body
         const { id } = req.params
@@ -50,7 +56,7 @@ export const UpdateCategoryController = async (req, res) => {
     }
 }
 
-export const categoryController = async (req, res) => {
+export const subCategoryController = async (req, res) => {
     try {
         const category = await SubCategory.find({})
         res.status(200).send({
@@ -68,7 +74,7 @@ export const categoryController = async (req, res) => {
     }
 }
 
-export const deleteCategoryController = async (req, res) => {
+export const deleteSubCategoryController = async (req, res) => {
     try {
         const { id } = req.params
         await SubCategory.findByIdAndDelete(id)

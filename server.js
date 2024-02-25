@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import authRoute from './routes/authRoute.js'
 import categoryRoute from './routes/categoryRoute.js'
 import subcategoryRoute from './routes/subCategoryRoute.js'
+import productRoutes from './routes/productRoutes.js'
 import { errorHandler } from './middleware/errorMiddleware.js';
 import cors from 'cors'
 
@@ -28,6 +29,7 @@ app.use(morgan('dev'))
 app.use('/auth', authRoute)
 app.use('/categories', categoryRoute)
 app.use('/subcategories', subcategoryRoute)
+app.use('/products', productRoutes)
 
 
 
