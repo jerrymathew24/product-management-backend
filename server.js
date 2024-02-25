@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import morgan from 'morgan';
 import connectDB from './config/db.js';
 import authRoute from './routes/authRoute.js'
+import categoryRoute from './routes/categoryRoute.js'
+import subcategoryRoute from './routes/subCategoryRoute.js'
 import { errorHandler } from './middleware/errorMiddleware.js';
 import cors from 'cors'
 
@@ -24,37 +26,9 @@ app.use(morgan('dev'))
 
 //routes
 app.use('/auth', authRoute)
+app.use('/categories', categoryRoute)
+app.use('/subcategories', subcategoryRoute)
 
-
-
-// Define a route handler for the root URL
-app.get('/', (req, res) => {
-    res.send('Hello server');
-});
-
-// Define a route handler for the '/login' URL
-app.get('/login', (req, res) => {
-    // Send a response to the client
-    res.send('This is the login page.');
-});
-
-// Define a route handler for the '/signUp' URL
-app.get('/signUp', (req, res) => {
-    // Send a response to the client
-    res.send('This is the signUp page.');
-});
-
-// Define a route handler for the '/cart' URL
-app.get('/cart', (req, res) => {
-    // Send a response to the client
-    res.send('This is the cart page.');
-});
-
-// Define a route handler for the '/wishlist' URL
-app.get('/wishlist', (req, res) => {
-    // Send a response to the client
-    res.send('This is the wishlist page.');
-});
 
 
 app.use(errorHandler)
