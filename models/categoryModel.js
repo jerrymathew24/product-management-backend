@@ -1,15 +1,18 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const categorySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
-    subcategories: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Subcategory'
-    }]
-});
+    slug: {
+        type: String,
+        lowerCase: true,
 
-export default mongoose.model('Category', categorySchema);
+    }
+
+})
+
+
+export default mongoose.model('Category', categorySchema)

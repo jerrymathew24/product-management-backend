@@ -1,11 +1,15 @@
 import express from 'express'
-import { createSubcategory, deleteSubcategory, getAllSubcategories } from '../controller/subCategoryController.js'
+import { UpdateCategoryController, categoryController, createCategoryController, deleteCategoryController } from '../controller/subCategoryController.js'
 
 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/', getAllSubcategories);
-router.post('/', createSubcategory);
-router.delete('/:id', deleteSubcategory);
-
-export default router;
+//create category
+router.post('/create-subcategory', createCategoryController)
+//update category
+router.put('/update-subcategory/:id', UpdateCategoryController)
+//get all category
+router.get('/get-subcategory', categoryController)
+//delete category
+router.delete('/delete-subcategory/:id', deleteCategoryController)
+export default router 
