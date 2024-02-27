@@ -15,13 +15,13 @@ export const createSubCategoryController = async (req, res) => {
             })
         }
 
-        const existingCategory = await SubCategory.findOne({ name })
-        if (existingCategory) {
-            res.status(200).send({
-                message: 'Sub Category already exists'
-            })
-        }
-        const subCategory = await new SubCategory({ name, slug: slugify(name) }).save()
+        // const existingSubCategory = await SubCategory.findOne({ name })
+        // if (existingSubCategory) {
+        //     res.status(200).send({
+        //         message: 'Sub Category already exists'
+        //     })
+        // }
+        const subCategory = await new SubCategory({ category, name, slug: slugify(name) }).save()
         res.status(201).send({
             success: true,
             message: "new Sub Category created",

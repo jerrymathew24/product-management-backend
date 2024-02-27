@@ -9,8 +9,6 @@ import productRoutes from './routes/productRoutes.js'
 import { errorHandler } from './middleware/errorMiddleware.js';
 import cors from 'cors'
 
-
-
 //config dotenv
 dotenv.config()
 

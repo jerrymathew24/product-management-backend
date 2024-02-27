@@ -2,8 +2,8 @@ import mongoose from 'mongoose'
 
 const categorySchema = new mongoose.Schema({
     category: {
-        type: String,
-        required: true,
+        type: mongoose.ObjectId,
+        ref: 'Category',
     },
     name: {
         type: String,
@@ -19,4 +19,4 @@ const categorySchema = new mongoose.Schema({
 })
 
 
-export default mongoose.model('subCategory', categorySchema)
+export default mongoose.model('SubCategory', categorySchema)
